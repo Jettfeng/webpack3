@@ -1,31 +1,18 @@
+var webpack = require("webpack"); //局部webpack作为依赖，全局webpack作为工具
+var path = require("path");
 module.exports = {
   entry: {
-    app: "./app.js"
+    pageA: "./src/pageA.js"
   },
   output: {
-    filename: "[name].[hash:8].js"
+    path: path.resolve(__dirname, "./dist"),
+    filename: "[name].bundle.js",
+    chunkFilename: "[name].chunk.js"
   },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            //options 可以移入.babelrc文件中
-            // presets: [
-            //   [
-            //     "@babel/preset-env",
-            //     {
-            //       targets: [" > 1%", "last 2 versions"] //支持全球大于1%的浏览器,最新2个版本的浏览器
-            //      // targets: "chrome 52"
-            //     }
-            //   ]
-            // ]
-          }
-        },
-        exclude: /(node_modules|bower_components)/ //不包含
-      }
-    ]
-  }
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "common",
+      minChunks: 2
+    })
+  ]
 };

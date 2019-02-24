@@ -11,7 +11,8 @@
 <p>@babel/polyfill:npm install --save @babel/polyfill，全局垫片,使用时直接在js文件中引入</p>
 <p>@babel/plugin-transform-runtime:npm install --save-dev @babel/plugin-transform-runtime,局部垫片,在.babelrc中配置</p>
 <p>@babel/plugin-transform-runtime依赖于@babel/runtime：npm install --save @babel/runtime</p>
-<p></p>
+<h2>3-5 由浅入深 webpack - 打包公共代码（1）</h2>
+<p>插件：CommonsChunkPlugin</p>
 <p></p>
 <p></p>
 <p></p>
