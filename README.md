@@ -13,7 +13,8 @@
 <p>@babel/plugin-transform-runtime依赖于@babel/runtime：npm install --save @babel/runtime</p>
 <h2>3-5 由浅入深 webpack - 打包公共代码（1）</h2>
 <p>插件：CommonsChunkPlugin</p>
-<p></p>
-<p></p>
+<h2>3-7 由浅入深 webpack - 代码分割和懒加载（1）</h2>
+<p>1.webpack methods:require.ensure或者webpack.include</p>
+<p>2.Es 2015 Loader spec</p>
 <p></p>
 <p></p>
