@@ -14,10 +14,15 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: "style-loader/url"
+            loader: "style-loader",
+            options: {
+              insertInto: "#app", //将css插入某个元素下
+              singleton: true,
+              transform: "./css.transform.js"
+            }
           },
           {
-            loader: "file-loader"
+            loader: "css-loader"
           }
           // {
           //   loader: "style-loader"
