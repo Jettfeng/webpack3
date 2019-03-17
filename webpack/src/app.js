@@ -1,6 +1,9 @@
 import base from "./css/base.css";
 import common from "./css/common.css";
 
+document.getElementById("app");
+app.innerHTML = "<div class=" + base.box + "></div>";
+
 // 控制使用
 // base.use();
 // 控制不适用

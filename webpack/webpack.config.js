@@ -16,20 +16,18 @@ module.exports = {
           {
             loader: "style-loader",
             options: {
-              insertInto: "#app", //将css插入某个元素下
-              singleton: true,
+              // singleton: true,
               transform: "./css.transform.js"
             }
           },
           {
-            loader: "css-loader"
+            loader: "css-loader",
+            options: {
+              modules: true,
+              localIdentName: "[path][name]_[local]_[hash:base64:5]"
+              // minimize: true
+            }
           }
-          // {
-          //   loader: "style-loader"
-          // },
-          // {
-          //   loader: "css-loader"
-          // }
         ]
       }
     ]

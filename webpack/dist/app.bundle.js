@@ -60,102 +60,11 @@
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function (useSourceMap) {
-  var list = []; // return the list of modules as css string
-
-  list.toString = function toString() {
-    return this.map(function (item) {
-      var content = cssWithMappingToString(item, useSourceMap);
-
-      if (item[2]) {
-        return '@media ' + item[2] + '{' + content + '}';
-      } else {
-        return content;
-      }
-    }).join('');
-  }; // import a list of modules into the list
-
-
-  list.i = function (modules, mediaQuery) {
-    if (typeof modules === 'string') {
-      modules = [[null, modules, '']];
-    }
-
-    var alreadyImportedModules = {};
-
-    for (var i = 0; i < this.length; i++) {
-      var id = this[i][0];
-
-      if (id != null) {
-        alreadyImportedModules[id] = true;
-      }
-    }
-
-    for (i = 0; i < modules.length; i++) {
-      var item = modules[i]; // skip already imported module
-      // this implementation is not 100% perfect for weird media query combinations
-      // when a module is imported multiple times with different media queries.
-      // I hope this will never occur (Hey this way we have smaller bundles)
-
-      if (item[0] == null || !alreadyImportedModules[item[0]]) {
-        if (mediaQuery && !item[2]) {
-          item[2] = mediaQuery;
-        } else if (mediaQuery) {
-          item[2] = '(' + item[2] + ') and (' + mediaQuery + ')';
-        }
-
-        list.push(item);
-      }
-    }
-  };
-
-  return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-  var content = item[1] || '';
-  var cssMapping = item[3];
-
-  if (!cssMapping) {
-    return content;
-  }
-
-  if (useSourceMap && typeof btoa === 'function') {
-    var sourceMapping = toComment(cssMapping);
-    var sourceURLs = cssMapping.sources.map(function (source) {
-      return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
-    });
-    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-  }
-
-  return [content].join('\n');
-} // Adapted from convert-source-map (MIT)
-
-
-function toComment(sourceMap) {
-  // eslint-disable-next-line no-undef
-  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-  var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-  return '/*# ' + data + ' */';
-}
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports) {
 
 module.exports = function(css) {
@@ -172,7 +81,7 @@ module.exports = function(css) {
 
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -241,7 +150,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(6);
+var	fixUrls = __webpack_require__(5);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -578,17 +487,20 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_base_css__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_base_css__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__css_base_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__css_base_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_common_css__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_common_css__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__css_common_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__css_common_css__);
 
 
+
+document.getElementById("app");
+app.innerHTML = "<div class=" + __WEBPACK_IMPORTED_MODULE_0__css_base_css___default.a.box + "></div>";
 
 // 控制使用
 // base.use();
@@ -609,31 +521,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(5);
+var content = __webpack_require__(4);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
 var transform;
 var insertInto;
 
-transform = __webpack_require__(1);
+transform = __webpack_require__(0);
 
-var options = {"insertInto":"#app","singleton":true,"transform":"./css.transform.js","hmr":true}
+var options = {"transform":"./css.transform.js","hmr":true}
 
 options.transform = transform
-options.insertInto = "#app";
+options.insertInto = undefined;
 
-var update = __webpack_require__(2)(content, options);
+var update = __webpack_require__(1)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
 if(false) {
-	module.hot.accept("!!../../node_modules/css-loader/dist/cjs.js!./base.css", function() {
-		var newContent = require("!!../../node_modules/css-loader/dist/cjs.js!./base.css");
+	module.hot.accept("!!../../node_modules/css-loader/dist/cjs.js??ref--0-1!./base.css", function() {
+		var newContent = require("!!../../node_modules/css-loader/dist/cjs.js??ref--0-1!./base.css");
 
 		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 
@@ -659,17 +571,13 @@ if(false) {
 }
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 4 */
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__(0)(false);
-// Module
-exports.push([module.i, "html {\r\n  background: red;\r\n}\r\n", ""]);
-
-
+throw new Error("Module build failed: TypeError: Path must be a string. Received undefined\n    at E:\\css-loader!E:\\webpack3\\webpack\\src\\css\\base.css:5:1\n    at assertPath (path.js:28:11)\n    at Object.relative (path.js:558:5)\n    at getLocalIdent (E:\\webpack3\\webpack\\node_modules\\css-loader\\dist\\utils.js:48:33)\n    at generateScopedName (E:\\webpack3\\webpack\\node_modules\\css-loader\\dist\\index.js:90:16)\n    at exportScopedName (E:\\webpack3\\webpack\\node_modules\\postcss-modules-scope\\src\\index.js:64:26)\n    at localizeNode (E:\\webpack3\\webpack\\node_modules\\postcss-modules-scope\\src\\index.js:84:26)\n    at Array.map (<anonymous>)\n    at localizeNode (E:\\webpack3\\webpack\\node_modules\\postcss-modules-scope\\src\\index.js:80:38)\n    at traverseNode (E:\\webpack3\\webpack\\node_modules\\postcss-modules-scope\\src\\index.js:103:20)\n    at Array.map (<anonymous>)\n    at traverseNode (E:\\webpack3\\webpack\\node_modules\\postcss-modules-scope\\src\\index.js:109:38)\n    at Array.map (<anonymous>)\n    at traverseNode (E:\\webpack3\\webpack\\node_modules\\postcss-modules-scope\\src\\index.js:109:38)\n    at css.walkRules.rule (E:\\webpack3\\webpack\\node_modules\\postcss-modules-scope\\src\\index.js:129:27)\n    at E:\\webpack3\\webpack\\node_modules\\postcss\\lib\\container.js:239:18\n    at E:\\webpack3\\webpack\\node_modules\\postcss\\lib\\container.js:135:18\n    at Root.each (E:\\webpack3\\webpack\\node_modules\\postcss\\lib\\container.js:101:16)\n    at Root.walk (E:\\webpack3\\webpack\\node_modules\\postcss\\lib\\container.js:131:17)\n    at Root.walkRules (E:\\webpack3\\webpack\\node_modules\\postcss\\lib\\container.js:237:19)\n    at css (E:\\webpack3\\webpack\\node_modules\\postcss-modules-scope\\src\\index.js:127:9)\n    at LazyResult.run (E:\\webpack3\\webpack\\node_modules\\postcss\\lib\\lazy-result.js:295:14)\n    at LazyResult.asyncTick (E:\\webpack3\\webpack\\node_modules\\postcss\\lib\\lazy-result.js:208:26)\n    at LazyResult.asyncTick (E:\\webpack3\\webpack\\node_modules\\postcss\\lib\\lazy-result.js:221:14)\n    at LazyResult.asyncTick (E:\\webpack3\\webpack\\node_modules\\postcss\\lib\\lazy-result.js:221:14)\n    at LazyResult.asyncTick (E:\\webpack3\\webpack\\node_modules\\postcss\\lib\\lazy-result.js:221:14)\n    at processing.Promise.then._this2.processed (E:\\webpack3\\webpack\\node_modules\\postcss\\lib\\lazy-result.js:250:14)\n    at new Promise (<anonymous>)\n    at LazyResult.async (E:\\webpack3\\webpack\\node_modules\\postcss\\lib\\lazy-result.js:246:23)\n    at LazyResult.then (E:\\webpack3\\webpack\\node_modules\\postcss\\lib\\lazy-result.js:127:17)\n    at Object.loader (E:\\webpack3\\webpack\\node_modules\\css-loader\\dist\\index.js:122:6)");
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 
@@ -764,31 +672,31 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(8);
+var content = __webpack_require__(7);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
 var transform;
 var insertInto;
 
-transform = __webpack_require__(1);
+transform = __webpack_require__(0);
 
-var options = {"insertInto":"#app","singleton":true,"transform":"./css.transform.js","hmr":true}
+var options = {"transform":"./css.transform.js","hmr":true}
 
 options.transform = transform
-options.insertInto = "#app";
+options.insertInto = undefined;
 
-var update = __webpack_require__(2)(content, options);
+var update = __webpack_require__(1)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
 if(false) {
-	module.hot.accept("!!../../node_modules/css-loader/dist/cjs.js!./common.css", function() {
-		var newContent = require("!!../../node_modules/css-loader/dist/cjs.js!./common.css");
+	module.hot.accept("!!../../node_modules/css-loader/dist/cjs.js??ref--0-1!./common.css", function() {
+		var newContent = require("!!../../node_modules/css-loader/dist/cjs.js??ref--0-1!./common.css");
 
 		if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 
@@ -814,14 +722,105 @@ if(false) {
 }
 
 /***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)(false);
+// Module
+exports.push([module.i, "body {\r\n  font-size: 20px;\r\n}\r\n\r\n/* .bigBox {\r\n  border: 2px solid #000;\r\n} */\r\n", ""]);
+
+
+
+/***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(0)(false);
-// Module
-exports.push([module.i, "body {\r\n  font-size: 20px;\r\n}\r\n", ""]);
+"use strict";
 
 
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
+
+      if (item[2]) {
+        return '@media ' + item[2] + '{' + content + '}';
+      } else {
+        return content;
+      }
+    }).join('');
+  }; // import a list of modules into the list
+
+
+  list.i = function (modules, mediaQuery) {
+    if (typeof modules === 'string') {
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    for (var i = 0; i < this.length; i++) {
+      var id = this[i][0];
+
+      if (id != null) {
+        alreadyImportedModules[id] = true;
+      }
+    }
+
+    for (i = 0; i < modules.length; i++) {
+      var item = modules[i]; // skip already imported module
+      // this implementation is not 100% perfect for weird media query combinations
+      // when a module is imported multiple times with different media queries.
+      // I hope this will never occur (Hey this way we have smaller bundles)
+
+      if (item[0] == null || !alreadyImportedModules[item[0]]) {
+        if (mediaQuery && !item[2]) {
+          item[2] = mediaQuery;
+        } else if (mediaQuery) {
+          item[2] = '(' + item[2] + ') and (' + mediaQuery + ')';
+        }
+
+        list.push(item);
+      }
+    }
+  };
+
+  return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+  var content = item[1] || '';
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
+
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
+
+
+function toComment(sourceMap) {
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+  return '/*# ' + data + ' */';
+}
 
 /***/ })
 /******/ ]);
